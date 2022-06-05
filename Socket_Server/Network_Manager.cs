@@ -60,7 +60,7 @@ public class Network_Manager
                 GetRacesData(client);
                 break;
             case "GetRace":
-                GetRacesOnGame(client, parameters[1], parameters[2]);
+                GetRaceByUsername(client, parameters[1]);
                 break;
                 
         }
@@ -127,13 +127,13 @@ public class Network_Manager
         }
     }
 
-    private void GetRacesOnGame(Client client, string nickUser, string nickEnemy)
+    private void GetRaceByUsername(Client client, string _username)
     {
 
         try
         {
             StreamWriter writer = new StreamWriter(client.GetTcpClient().GetStream());
-            writer.WriteLine("RacesResponse/" + Database_Manager.instance.GetRacesOnGame(nickUser, nickEnemy));
+            writer.WriteLine("RaceResponse/" + Database_Manager.instance.GetRaceByUsername(_username));
             writer.Flush();
         }
         catch (Exception e)
